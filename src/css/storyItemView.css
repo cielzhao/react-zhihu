@@ -1,0 +1,21 @@
+/*---------- story  ----------*/
+.story-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin:.8rem;
+    background: #fff;
+    padding:.6rem;
+    box-shadow: .1rem .2rem .4rem #ddd;
+    border-radius: .1rem;
+    height: 6rem;
+    box-sizing: border-box;
+}
+.story-img{
+    height: 5rem;
+}
+.story-title{
+    margin-left:.5rem;
+    margin-top: .5rem;
+}

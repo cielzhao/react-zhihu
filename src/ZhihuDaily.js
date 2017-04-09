@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import StoryListView from './StoryListView';
+import TopStoryListView from './TopStoryListView';
 import LoadLayout from './LoadLayout';
 import ProgressBar from './ProgressBar';
 import ErrorView from './ErrorView';
+import ActionBar from './ActionBar';
+import './css/zhihuDaily.css';
 
-const STORIES_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/latest.json';
+
+// const STORIES_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/latest.json';
+
+const STORIES_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/news/latest';
+
 
 const LOADING = 'loading';
 const SUCCESS = 'success';
@@ -23,6 +30,7 @@ class ZhihuDaily extends Component{
   }
 
   componentDidMount(){
+    this.showLoading();
     this.fetchData();
   }
 
@@ -33,10 +41,16 @@ class ZhihuDaily extends Component{
     .catch(error=>this.onError(error));
   }
 
+  showLoading(){
+      this.setState({
+          status:LOADING,
+      });
+  }
+
   onSuccess(value){
     this.setState({
       status:SUCCESS,
-      topStories:value.topStories,
+      topStories:value.top_stories,
       stories:value.stories,
     });
   }
@@ -49,34 +63,29 @@ class ZhihuDaily extends Component{
   }
 
   render(){
-    // return (
-    //   <div>
-    //     <h1>Zhihu Daily</h1>
-    //
-    //     <LoadLayout
-    //       status={this.state.status}
-    //       errorMessage={this.state.errorMessage}
-    //       onReloadAction={this.onReloadAction}
-    //       renderContent={this.renderListView}/>
-    //   </div>
-    // );
-    if (this.state.status == LOADING) {
-      return (<ProgressBar />);
-    }else if(this.state.status == ERROR){
-      return (<ErrorView message = {this.state.errorMessage}/>);
-    }else if (this.state.status == SUCCESS) {
-      return this.renderListView();
-    }else {
-      return (<div>Empty</div>);
-    }
+    return (
+      <div className="container">
+        <ActionBar />
+        <LoadLayout
+          status={this.state.status}
+          renderContent={this.renderContentView.bind(this)}
+          onReloadAction={this.onReloadAction.bind(this)}
+          errorMessage = {this.state.errorMessage}/>
+      </div>
+    );
   }
 
   onReloadAction(){
     this.fetchData();
   }
 
-  renderListView(){
-    return (<StoryListView stories={this.state.stories} />);
+  renderContentView(){
+      return (
+          <div className="content">
+              <TopStoryListView className="slide" stories={this.state.topStories} />
+              <StoryListView className="listview" stories={this.state.stories} />
+          </div>
+      );
   }
 }
 

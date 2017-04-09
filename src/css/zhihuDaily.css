@@ -1,0 +1,23 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li{list-style:none}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+html{font-family:"微软雅黑",Arial,sans-serif;}
+a {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color:transparent;
+	border:none;
+	outline:none;
+	text-decoration: none;
+}
+input:focus {
+    outline: none;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	background: #f5f5f5;
+}

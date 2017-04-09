@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ProgressBar from './ProgressBar';
 import ErrorView from './ErrorView';
+import './css/loadLayout.css';
 
 class LoadLayout extends Component{
 
