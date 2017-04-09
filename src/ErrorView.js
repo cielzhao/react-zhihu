@@ -7,7 +7,7 @@ class ErrorView extends Component{
 
   render(){
     return (
-      <span>{this.props.message}</span>
+      <span className="error">{this.props.message}</span>
     );
   }
 }
