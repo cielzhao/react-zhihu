@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-var Slider = require('react-slick');
+// var Slider = require('react-slick');
 import './css/topStoryItemView.css';
 
 
