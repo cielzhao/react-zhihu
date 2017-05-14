@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-// var Slider = require('react-slick');
+import { Link } from 'react-router-dom';
 import './css/topStoryItemView.css';
 
 
@@ -10,12 +10,17 @@ class TopStoryItemView extends Component{
 
   render(){
       var bgImg = this.getImageUrl(this.props.story.image);
+      var bgImgId = this.props.story.id;
+
       return (
+        <Link to={"/detail/" + bgImgId}>
           <li className="top-story-item" style={{backgroundImage:'url(' + bgImg + ')'}}>
-                <div className="top-story-mask">
-                    <h3 className="top-story-title">{this.props.story.title}</h3>
-                </div>
+              <div className="top-story-mask">
+                  <h3 className="top-story-title">{this.props.story.title}</h3>
+              </div>
           </li>
+        </Link>
+
         );
   }
 

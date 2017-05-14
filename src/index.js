@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ZhihuDaily from './ZhihuDaily';
-import ErrorView from './ErrorView';
-import ProgressBar from './ProgressBar';
-import './index.css';
+import App from './App';
 
 ReactDOM.render(
-  <ZhihuDaily />, document.getElementById('root')
+  <App />,
+  document.getElementById('root')
 );

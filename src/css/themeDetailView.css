@@ -1,0 +1,28 @@
+.theme-detail-container .watch {
+  margin-right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+.theme-detail-container .iconfont.add {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 0;
+}
+.theme-detail-container .top-story {
+  width: 100%;
+  height: 15rem;
+  background-size: 100%;
+  background-position: 50% 50%;
+}
+.theme-detail-container .top-story {
+  position: relative;
+}
+.theme-detail-container .top-story-title {
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+}

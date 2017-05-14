@@ -14,8 +14,8 @@ class StoryListView extends Component{
         return (<StoryItemView story={story} key={index}/>);
       });
       return (
-          <ol>
-            <h3 className="story_section_title">今日热闻</h3>
+          <ol className="story-list">
+            <h3 className="story-section-title">今日热闻</h3>
             {storyItemViews}
           </ol>
       );

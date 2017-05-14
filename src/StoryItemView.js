@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { Link } from 'react-router-dom';
 import './css/storyItemView.css';
 
 class StoryItemView extends Component{
@@ -7,11 +8,15 @@ class StoryItemView extends Component{
   }
 
   render(){
+    var bgImgId = this.props.story.id;
     return (
-      <li className="story-item">
-        <img className="story-img" src={this.getImageUrl(this.props.story.images.toString())} />
-        <h3 className="story-title">{this.props.story.title}</h3>
-      </li>);
+        <li className="story-item">
+          <Link to={"/detail/" + bgImgId}>
+            <img className="story-img" src={this.getImageUrl(this.props.story.images.toString())} />
+            <h3 className="story-title">{this.props.story.title}</h3>
+          </Link>
+        </li>
+    );
   }
 
   getImageUrl(imageUrl){
