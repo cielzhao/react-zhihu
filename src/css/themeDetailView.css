@@ -11,6 +11,8 @@
   font-size: 1rem;
   font-weight: bold;
   line-height: 0;
+  display: block;
+  margin-top: .6rem;
 }
 .theme-detail-container .top-story {
   width: 100%;

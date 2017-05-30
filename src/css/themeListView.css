@@ -22,6 +22,7 @@
 }
 
 .theme-container.slide-out{
+    left: -80%;
     animation:slide-out 1s;
     -moz-animation:slide-out 1s; /* Firefox */
     -webkit-animation:slide-out 1s; /* Safari and Chrome */
@@ -29,8 +30,8 @@
 }
 @keyframes slide-out
 {
-    0%   {left:-80%;}
-    100% {left:0;}
+    0%   {left:0;}
+    100% {left:-80%;}
 }
 
 
@@ -101,4 +102,8 @@
 .theme-list-item .add {
     font-size: 1rem;
     color: #ccc;
+}
+.theme-list a {
+  text-decoration: none;
+  color: #2c3e50;
 }

@@ -3,8 +3,8 @@ import './css/iconfont.css';
 import './css/themeDetailView.css';
 
 
-const THEME_DETAIL_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/themedetail.json';
-// const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/theme/11';
+// const THEME_DETAIL_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/themedetail.json';
+const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/theme/';
 
 
 const LOADING = 'loading';
@@ -36,7 +36,7 @@ class ThemeDetailView extends Component{
   }
 
   fetchData(){
-    fetch(THEME_DETAIL_API)
+    fetch(THEME_DETAIL_API + this.props.match.params.id)
     .then((response)=>response.json())
     .then(value=>this.onSuccess(value))
     .catch(error=>this.onError(error));

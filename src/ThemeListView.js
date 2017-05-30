@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { Link } from 'react-router-dom';
 import './css/iconfont.css';
 import './css/themeListView.css';
 
@@ -61,11 +62,14 @@ class ThemeListView extends Component{
     var theme = this.state.theme;
     if ( theme !== null) {
       var themeList = theme.map(function(theme, index) {
+        var themeId = theme.id;
         return (
+          <Link to={"/themeDetailView/" + themeId}>
           <li className="theme-list-item" key={index}>
             <span>{theme.name}</span>
             <i className="iconfont add">&#xe620;</i>
-          </li>);
+          </li>
+          </Link>);
       });
 
       var className;

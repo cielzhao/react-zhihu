@@ -67,7 +67,12 @@ class ZhihuDaily extends Component{
   }
 
   render(){
-
+    var contentMask;
+    if (this.state.drawerState == SHOW_DRAWER) {
+      contentMask = "content-mask show";
+    }else {
+      contentMask = "content-mask";
+    }
     return (
       <div>
         <ActionBar
@@ -78,6 +83,7 @@ class ZhihuDaily extends Component{
           onReloadAction={this.onReloadAction.bind(this)}
           errorMessage = {this.state.errorMessage} />
         <ThemeListView showState={this.state.drawerState}/>
+        <div className={contentMask}  onClick={this.onActionBarMenuClick.bind(this)}></div>
       </div>
     );
   }
@@ -101,7 +107,7 @@ class ZhihuDaily extends Component{
 
   renderContentView(){
       return (
-          <div className="content" onClick={this.onActionBarMenuClick.bind(this)}>
+          <div className="content">
               <TopStoryListView className="slide" stories={this.state.topStories} />
               <StoryListView className="listview" stories={this.state.stories} />
           </div>

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import ZhihuDaily from './ZhihuDaily';
 import DetailView from './DetailView';
+import ThemeListView from './ThemeListView';
 import ThemeDetailView from './ThemeDetailView';
 
 class App extends Component{
@@ -19,6 +20,7 @@ class App extends Component{
         <div>
           <Route exact path="/" component={ZhihuDaily}/>
           <Route path="/detail/:id" component={DetailView}/>
+          <Route path="/themeListView/:id" component={ThemeListView}/>
           <Route path="/themeDetailView/:id" component={ThemeDetailView}/>
         </div>
       </Router>
