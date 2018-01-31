@@ -3,14 +3,15 @@ import StoryListView from './StoryListView';
 import TopStoryListView from './TopStoryListView';
 import ActionBar from './ActionBar';
 import LoadLayout from './LoadLayout';
-import ProgressBar from './ProgressBar';
+//import ProgressBar from './ProgressBar';
 import ThemeListView from './ThemeListView';
 import './css/zhihuDaily.css';
+import api from './api/api.js';
 
 
-const STORIES_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/latest.json';
+// const STORIES_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/latest.json';
 
-// const STORIES_API = 'http://crossorigin.me/http://news.at.zhihu.com/api/4/news/latest';
+const STORIES_API = api.lastStories
 
 
 const LOADING = 'loading';
@@ -52,10 +53,11 @@ class ZhihuDaily extends Component{
   }
 
   onSuccess(value){
+  		console.log(value)
     this.setState({
       status:SUCCESS,
-      topStories:value.top_stories,
-      stories:value.stories,
+      topStories:value.STORIES.top_stories,
+      stories:value.STORIES.stories,
     });
   }
 

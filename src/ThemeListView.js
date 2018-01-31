@@ -2,10 +2,12 @@ import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import './css/iconfont.css';
 import './css/themeListView.css';
+import api from './api/api.js';
+import avatar from './img/avatar.jpg';
 
-const THEME_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/themes.json';
+//const THEME_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/themes.json';
 // const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/themes';
-
+const THEME_API = api.themes
 
 const LOADING = 'loading';
 const SUCCESS = 'success';
@@ -45,9 +47,10 @@ class ThemeListView extends Component{
   }
 
   onSuccess(value){
+  	console.log(value)
     this.setState({
       status:SUCCESS,
-      theme:value.others,
+      theme:value.THEMES.others,
     });
   }
 
@@ -64,8 +67,8 @@ class ThemeListView extends Component{
       var themeList = theme.map(function(theme, index) {
         var themeId = theme.id;
         return (
-          <Link to={"/themeDetailView/" + themeId}>
-          <li className="theme-list-item" key={index}>
+          <Link to={"/themeDetailView/" + themeId}  key={themeId}>
+          <li className="theme-list-item">
             <span>{theme.name}</span>
             <i className="iconfont add">&#xe620;</i>
           </li>
@@ -83,7 +86,7 @@ class ThemeListView extends Component{
           <div className="theme-content">
               <div className="personal">
                   <div className="avator">
-                      <div className="img"></div>
+                      <img className="img" src={avatar} />
                       <span>Ciel</span>
                   </div>
 

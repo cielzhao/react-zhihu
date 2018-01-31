@@ -2,11 +2,9 @@ import React,{Component} from 'react';
 import LoadLayout from './LoadLayout';
 import './css/iconfont.css';
 import './css/detailView.css';
+import api from './api/api.js';
 
-
-// const THEME_DETAIL_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/detail.json';
-const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/news/';
-
+const THEME_DETAIL_API = api.contents
 
 const LOADING = 'loading';
 const SUCCESS = 'success';
@@ -43,6 +41,7 @@ class DetailView extends Component{
   }
 
   onSuccess(value){
+  		console.log(value)
     this.setState({
       status:SUCCESS,
       data:value,
@@ -80,8 +79,9 @@ class DetailView extends Component{
   }
 
   renderContentView(){
-    var cssList = this.state.data.css;
-    var body = this.state.data.body;
+    var cssList = this.state.data.CONTENTS.css;
+    var body = this.state.data.CONTENTS.body;
+    
 
     var html = "";
 
@@ -107,8 +107,18 @@ class DetailView extends Component{
         html += "</div>";
       }
     }
+    
+   	
+   	var topStory;
+  		if(this.state.data.CONTENTS.image != null) {
+    		topStory = (
+    			<div className="top-story" style={{backgroundImage:'url(' + this.state.data.CONTENTS.image + ')'}}>
+          <h1 className="top-story-title">{this.state.data.title}</h1>
+        </div>
+    		)	    		
+    }
 
-    return (
+    return (   		
       <div className="detail-container">
         <div className="action-bar">
             <div onClick={this.goBack.bind(this)}>
@@ -121,26 +131,11 @@ class DetailView extends Component{
                 <span><i className="iconfont thumb">&#xe6c6;</i><label className="num">1</label></span>
             </div>
         </div>
-        <div className="top-story" style={{backgroundImage:'url(' + this.getImageUrl(this.state.data.image) + ')'}}>
-          <h1 className="top-story-title">{this.state.data.title}</h1>
-        </div>
+        {topStory}
         <div className="story-container" dangerouslySetInnerHTML = {{__html:html}}/>
       </div>
     );
   }
-
-
-  getImageUrl(imageUrl){
-    var base = "https://images.weserv.nl/?url=";
-      if (imageUrl.indexOf("https://") >= 0) {
-          imageUrl = imageUrl.replace(/https:\/\//, base);
-      }else if (imageUrl.indexOf("http://") >= 0) {
-          imageUrl = imageUrl.replace(/http:\/\//, base);
-      }
-      return imageUrl;
-  }
-
-
 }
 
 

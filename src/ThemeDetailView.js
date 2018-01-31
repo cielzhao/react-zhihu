@@ -1,10 +1,13 @@
 import React,{Component} from 'react';
+import { Link } from 'react-router-dom';
 import './css/iconfont.css';
 import './css/themeDetailView.css';
+import api from './api/api.js';
 
 
 // const THEME_DETAIL_API = 'https://raw.githubusercontent.com/cielzhao/react-zhihu/master/data/news/themedetail.json';
-const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/theme/';
+//const THEME_DETAIL_API = 'https://crossorigin.me/http://news.at.zhihu.com/api/4/theme/';
+const THEME_DETAIL_API = api.themes
 
 
 const LOADING = 'loading';
@@ -12,7 +15,7 @@ const SUCCESS = 'success';
 const  ERROR = 'error';
 
 const SHOW = "show";
-const HIDE = "hide";
+//const HIDE = "hide";
 
 class ThemeDetailView extends Component{
 
@@ -50,13 +53,14 @@ class ThemeDetailView extends Component{
   }
 
   onSuccess(value){
+  	  console.log(value)
     this.setState({
       status:SUCCESS,
-      themeName:value.name,
-      topStoryImage:value.background,
-      topStoryTitle:value.description,
-      editors:value.editors,
-      stories:value.stories,
+      themeName:value.THEMEDES.name,
+      topStoryImage:value.THEMEDES.background,
+      topStoryTitle:value.THEMEDES.description,
+      editors:value.THEMEDES.editors,
+      stories:value.THEMEDES.stories,
     });
   }
 
@@ -77,17 +81,21 @@ class ThemeDetailView extends Component{
       var storiesList = stories.map(function(story, index) {
         var storyImg = story.images;
         if(storyImg!=null){
-          return (
+          return (         	
             <li className="story-item" key={index}>
-              <img className="story-img" src={storyImg} />
-              <h3 className="story-title">{story.title}</h3>
-            </li>
+            		<Link to={"/detail/" + story.id}>
+              		<img className="story-img" src={storyImg} />
+              		<h3 className="story-title">{story.title}</h3>
+              </Link>
+            </li>           
           );
         }else{
-          return (
+          return (       	
             <li className="story-item" key={index}>
+            		<Link to={"/detail/" + story.id}>
               <h3 className="story-title">{story.title}</h3>
-            </li>
+              </Link>
+            </li>           
           );
         }
       });
